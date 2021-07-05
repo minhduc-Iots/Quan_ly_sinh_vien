@@ -1,0 +1,90 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); -%>
+</head>
+
+<body style="background-color: white;">
+    <header>
+        <%- include('../partials/header'); -%> 
+    </header>
+
+    <main id="main">
+        <div class="container-fluid">
+            <h2 style="color: black;">Students:</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <!-- Tên cột dữ liệu -->
+                        <th>MSSV</th>
+                        <th>Họ và Tên</th>
+                        <th>Email</th>
+                        <th>Số điên thoại</th>
+                        <th>Mật khẩu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% students.forEach(function(student) { %>
+                        <!-- Một dòng dữ liệu -->
+                        <tr>
+                            <td>
+                                <%= student.masv %>
+                            </td>
+                            <td>
+                                <%= student.hovaten %>
+                            </td>
+                            <td>
+                                <%= student.email %>
+                            </td>
+                            <td>
+                                <%= student.sodienthoai %> 
+                            </td>
+                            <td>
+                                <%= student.password %> 
+                            </td>
+                            
+                            <td>
+                                <a type="button" class="btn btn-danger" href="/api/delete_student/?masv=<%= student.masv %>"><i
+                                        class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <!--  -->
+                        <% }); %>
+                            <form class='form-group' action="/api/add">
+                                <tr>
+                                    <td>
+                                        <input name="masv" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input name="hovaten" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input name="email" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input name="sodienthoai" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input name="password" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"
+                                                aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            </form>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); -%>
+    </footer>
+
+</body>
+
+</html>

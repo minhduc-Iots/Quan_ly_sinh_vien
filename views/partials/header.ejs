@@ -1,0 +1,52 @@
+<!-- views/partials/header.ejs -->
+<link href="lib/slick/slick.css" rel="stylesheet">
+<link href="lib/slick/slick-theme.css" rel="stylesheet">
+  <!-- Nav Bar Start -->
+  <div class="nav">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="logo">
+                        <a href="/information">
+                            <img src="images/logo.png" alt="Logo" style="width: 40px;;height:40px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto">
+                    <a href="/information" class="nav-item nav-link active">Trang Chủ</a>
+                    <a href="/information" class="nav-item nav-link">Tin Tức</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sinh viên</a>
+                        <div class="dropdown-menu">
+                            <a href="/student" class="dropdown-item">Danh sách sinh viên</a>
+                            <a href="/add-student" class="dropdown-item">Thêm mới sinh viên</a>
+                        </div>
+                    </div>
+                    <!-- <a href="/student" class="nav-item nav-link">Sinh viên</a> -->
+                    <a href="/account" class="nav-item nav-link">Tài khoản của bạn</a>
+                    <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+                </div>
+                <div class="navbar-nav ml-auto" style="text-align: right;">
+                    <div class="nav-item dropdown">
+                        <a href="/about" class="nav-item nav-link">Giới thiệu</a>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
+                        <div class="dropdown-menu">
+                            <a href="/" class="dropdown-item">Đăng nhập</a>
+                            <a href="/signup" class="dropdown-item">Đăng ký</a>
+                            <a href="/logout" class="dropdown-item">Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Nav Bar End -->
