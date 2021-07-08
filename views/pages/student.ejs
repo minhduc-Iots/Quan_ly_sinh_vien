@@ -6,31 +6,33 @@
         <%- include('../partials/head'); -%>
     </head>
     <%- include('../partials/header'); -%>
-    <!-- Breadcrumb Start -->
-<div class="breadcrumb-wrap">
-    <div class="container-fluid">
-      <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/information">Trang chủ</a></li>
-        <li class="breadcrumb-item active">Sinh viên</li>
-      </ul>
-    </div>
-  </div>
-<!-- Breadcrumb End -->
-
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/information">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Sinh viên</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
 </header>
-<main id="main">
-    <body class="img" style="background-image: url(images/bck-login.png);"></body>
+
+<body class="img" style="background-image: url(images/bck-login.png);">
+    <main id="main">
         <div class="container-fluid">
             <h2 style="color: black;">Danh sách sinh viên</h2>
-                <form action='/'>
-                    <div style="margin-top: 18px;" class="form-group d-flex flex-row">
-                        <label for="searchInput" style="width: 200px; font-weight: bold;" class='align-self-center'>Nhập mã sinh viên: </label>
-                        <input class="form-control" id="searchInput" name='search' placeholder="Search number">
+            <form action='/'>
+                <div style="margin-top: 18px;" class="form-group d-flex flex-row">
+                    <label for="searchInput" style="width: 200px; font-weight: bold;" class='align-self-center'>Nhập mã
+                        sinh
+                        viên: </label>
+                    <input class="form-control" id="searchInput" name='search' placeholder="Search number">
                     <button type="submit" class="btn btn-primary mx-2" style="margin: right 30px;">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
-                    </div>
-                </form>
+                </div>
+            </form>
             <table class="table" style="background-color: rgba(175, 193, 252,0.63);">
                 <thead>
                     <tr>
@@ -56,15 +58,17 @@
                                 <%= student.email %>
                             </td>
                             <td>
-                                <%= student.sodienthoai %> 
+                                <%= student.sodienthoai %>
                             </td>
                             <td>
-                                <%= student.password %> 
+                                <%= student.password %>
                             </td>
-                            
+
                             <td>
-                                <a type="button" class="btn btn-danger" href="/api/delete_student/?masv=<%= student.masv %>"><i
-                                        class="fa fa-trash"></i></a>
+                                <a type="button" class="btn btn-danger"
+                                    href="/api/delete_student/?masv=<%= student.masv %>"><i class="fa fa-trash"></i></a>
+                                <a type="button" class="btn btn-primary" href="/edit/?masv=<%= student.masv%>"><i
+                                        class="fa fa-upload"></i></a>
                             </td>
                         </tr>
                         <!--  -->
@@ -72,9 +76,10 @@
                 </tbody>
             </table>
         </div>
-    </body>
-</main>
+    </main>
+</body>
 <footer>
     <%- include('../partials/footer'); -%>
 </footer>
+
 </html>

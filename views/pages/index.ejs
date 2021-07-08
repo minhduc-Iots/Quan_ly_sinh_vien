@@ -9,7 +9,7 @@
 
 <body style="background-color: white;">
     <header>
-        <%- include('../partials/header'); -%> 
+        <%- include('../partials/header'); -%>
     </header>
 
     <main id="main">
@@ -40,15 +40,15 @@
                                 <%= student.email %>
                             </td>
                             <td>
-                                <%= student.sodienthoai %> 
+                                <%= student.sodienthoai %>
                             </td>
                             <td>
-                                <%= student.password %> 
+                                <%= student.password %>
                             </td>
-                            
+
                             <td>
-                                <a type="button" class="btn btn-danger" href="/api/delete_student/?masv=<%= student.masv %>"><i
-                                        class="fa fa-trash"></i></a>
+                                <a type="button" class="btn btn-danger"
+                                    href="/api/delete_student/?masv=<%= student.masv %>"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <!--  -->
@@ -80,11 +80,9 @@
             </table>
         </div>
     </main>
-
-    <footer>
-        <%- include('../partials/footer'); -%>
-    </footer>
-
 </body>
+<footer>
+    <%- include('../partials/footer'); -%>
+</footer>
 
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); -%>
+        <header>
+            <%- include('../partials/header'); -%>
+        </header>
+</head>
+
+<body class="img" style="background-image: url(images/bck-login.png);">
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/information">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Chỉnh sửa thông tin sinh viên</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <div>
+        <table class="table" style="background-color: rgba(175, 193, 252,0.63);">
+            <thead>
+                <tr>
+                    <!-- Tên cột dữ liệu -->
+                    <th>Họ và Tên</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Mật khẩu</th>
+                    <th>Cập nhật</th>
+                </tr>
+            </thead>
+            <tbody>
+                <form class='form-group' action="/api/update?masv=<%=sv.masv%>" method="POST">
+                    <tr>
+                        <td>
+                            <input name="hovaten" class="form-control" placeholder="<%=sv.hovaten%>" />
+                        </td>
+                        <td>
+                            <input name='email' class="form-control" placeholder="<%=sv.email%>" />
+                        </td>
+                        <td>
+                            <input name='sodienthoai' class="form-control" placeholder="<%=sv.sodienthoai%>" />
+                        </td>
+                        <td>
+                            <%= sv.password %>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-upload" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

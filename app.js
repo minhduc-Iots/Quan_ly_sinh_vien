@@ -35,7 +35,7 @@ var db = mysql.createConnection({
 db.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-});global.db = db;
+}); global.db = db;
 
 function getAllStudents() {
     var sql1 = "SELECT * FROM sinhvien";
@@ -52,24 +52,24 @@ app.get('/', function (req, res) {
     if (user == false) res.redirect("/login");
     if (req.query.hasOwnProperty("search")) {
         var search = req.query.search;
-      }
+    }
     var sql3 = "SELECT * from `sinhvien`  ORDER BY masv ASC;";
-    
-    db.query(sql3,function(err,results){
+
+    db.query(sql3, function (err, results) {
         if (err) throw err;
         if (!!search) {
             listsearch = [];
             results.forEach((element) => {
-              console.log(element.masv);
-              if (element.masv.toString().includes(search))
-                listsearch.push(element);
+                console.log(element.masv);
+                if (element.masv.toString().includes(search))
+                    listsearch.push(element);
             });
-      
+
             res.render('pages/student', { students: listsearch, search: search });
-          } else {
+        } else {
             res.render('pages/student', { students: results });
-          }
-        });
+        }
+    });
 });
 //login page
 app.get('/login', function (req, res) {
@@ -82,61 +82,78 @@ app.get('/logout', function (req, res) {
     res.redirect('/login');
 });
 // Forgot Password page 
-app.get('/password', function(req, res) {
+app.get('/password', function (req, res) {
     res.render('pages/password');
 });
 // Signup page 
-app.get('/signup', function(req, res) {
+app.get('/signup', function (req, res) {
     res.render('pages/signup');
 });
 // about page 
 app.get('/about', function (req, res) {
     res.render('pages/about');
-}); 
+});
 app.get('/about', function (req, res) {
     if (user == false) res.redirect('/login')
     res.render('pages/about');
 });
 //information page
-app.get('/student', function(req,res){
+app.get('/student', function (req, res) {
     if (req.query.hasOwnProperty("search")) {
         var search = req.query.search;
-      }
+    }
     var sql3 = "SELECT * from `sinhvien`  ORDER BY masv ASC;";
 
-    db.query(sql3,function(err,results){
+    db.query(sql3, function (err, results) {
         if (err) throw err;
         if (!!search) {
             listsearch = [];
             results.forEach((element) => {
-              console.log(element.masv);
-              if (element.masv.toString().includes(search))
-                listsearch.push(element);
+                console.log(element.masv);
+                if (element.masv.toString().includes(search))
+                    listsearch.push(element);
             });
-      
+
             res.render('pages/student', { students: listsearch, search: search });
-          } else {
+        } else {
             res.render('pages/student', { students: results });
-          }
-        });
+        }
+    });
 });
 //information page
-app.get('/information', function(req,res){
+app.get('/information', function (req, res) {
     res.render('pages/information');
 });
 // Account page
-app.get('/account', function(req,res){
+app.get('/account', function (req, res) {
     res.render('pages/account');
 })
 // Contact page
-app.get('/contact', function(req,res){
+app.get('/contact', function (req, res) {
     res.render('pages/Contact');
 })
 // Add-student page
-app.get('/add-student',function(req,res){
+app.get('/add-student', function (req, res) {
     res.render('pages/add-student');
-    
 })
+app.get('/edit', function (req, res) {
+    var id = req.query.masv;
+    //query get sim
+    var sql1 = `SELECT * from sinhvien WHERE masv = ${id}`;
+    // thực hiện truy vấn
+    db.query(sql1, function (err, results) {
+        if (err) throw err;
+
+        if (results) {
+            console.log("result", results);
+            res.render("pages/edit", { sv: results[0] });
+        } else {
+            res.render("pages/student");
+        }
+    });
+})
+
+
 // ########################## API interface Database ##############################
 
 app.get('/api/login', function (req, res) {
@@ -162,7 +179,7 @@ app.get('/api/login', function (req, res) {
 app.get('/api/add', function (req, res) {
     console.log('bod', req.query)
     // truy vấn csdl để tạo một ten
-    var sql2 = "INSERT INTO `sinhvien` VALUES ('"+req.query.masv+"','"+ req.query.hovaten+"','"+req.query.email+"','"+req.query.sodienthoai+"','"+req.query.password+"');";
+    var sql2 = "INSERT INTO `sinhvien` VALUES ('" + req.query.masv + "','" + req.query.hovaten + "','" + req.query.email + "','" + req.query.sodienthoai + "','" + req.query.password + "');";
     console.log(sql2);
     db.query(sql2, function (err, results) {
 
@@ -177,6 +194,17 @@ app.get('/api/delete_student', function (req, res) {
     db.query(sql1, function (err, results) {
         res.redirect('/')
     });
+});
+app.post("/api/update", function (req, res) {
+    var id = req.query.masv;
+    var updateData = req.body;
+    var sql = `UPDATE sinhvien SET ? WHERE masv= ?`;
+    db.query(sql, [updateData, id], function (err, data) {
+        if (err) throw err;
+        console.log(data.affectedRows + " record(s) updated");
+    });
+    res.redirect("/student");
+    // res.redirect('/')
 });
 
 // ##########################################################################
