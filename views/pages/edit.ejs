@@ -1,25 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head style="background-color: whitesmoke;">
     <%- include('../partials/head'); -%>
         <header>
-            <%- include('../partials/header'); -%>
+            <!-- Nav Bar Start -->
+            <div class="nav">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="logo">
+                                    <a href="/information">
+                                        <img src='http://dut.udn.vn/Files/admin/images/Tin_tuc/Khac/2020/LogoDUT/image002.jpg'
+                                            alt="logo" width="40px" , height="40px">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse"
+                            data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto">
+                                <a href="/information" class="nav-item nav-link active">Trang Chủ</a>
+                                <a href="/information" class="nav-item nav-link">Tin Tức</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sinh viên</a>
+                                    <div class="dropdown-menu">
+                                        <a href="/student" class="dropdown-item">Danh sách sinh viên</a>
+                                        <a href="/add-student" class="dropdown-item">Thêm mới sinh viên</a>
+                                    </div>
+                                </div>
+                                <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+                            </div>
+                            <div class="navbar-nav ml-auto" style="text-align: right;">
+                                <div class="nav-item dropdown">
+                                    <a href="/about" class="nav-item nav-link">Giới thiệu</a>
+                                </div>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
+                                    <div class="dropdown-menu">
+                                        <a href="/" class="dropdown-item">Đăng nhập</a>
+                                        <a href="/signup" class="dropdown-item">Đăng ký</a>
+                                        <a href="/logout" class="dropdown-item">Đăng xuất</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Nav Bar End -->
         </header>
+        <style>
+            .breadcrumb-wrap {
+                position: relative;
+                width: 100%;
+                padding-left: 15px;
+            }
+
+            .breadcrumb-wrap .breadcrumb {
+                margin: 0;
+                padding: 0;
+                background: transparent;
+            }
+
+            .container-fluid {
+                width: 100%;
+                align-content: center;
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+
+            .nav-item:hover .dropdown-menu {
+                display: block;
+                box-shadow: none;
+                margin-top: 0;
+                border: 0;
+                border-radius: 0;
+                background: whitesmoke;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
+                display: none;
+                float: left;
+                min-width: 10rem;
+                padding: 0.5rem 0;
+                margin: 0.125rem 0 0;
+                font-size: 1rem;
+                color: #212529;
+                text-align: left;
+                list-style: none;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                border-radius: 0.25rem;
+            }
+
+            body {
+                background-image: url('http://www.udn.vn/Portals/0/1doan%20thanh%20nien%20bk.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+        </style>
 </head>
 
-<body class="img" style="background-image: url(images/bck-login.png);">
+<body>
     <!-- Breadcrumb Start -->
-    <div class="breadcrumb-wrap">
+    <div class="breadcrumb-wrap" style="background-color: whitesmoke;">
         <div class="container-fluid">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/information">Trang chủ</a></li>
-                <li class="breadcrumb-item active">Chỉnh sửa thông tin sinh viên</li>
+                <li class="breadcrumb-item active" style="color: black;">Chỉnh sửa thông tin sinh viên</li>
             </ul>
         </div>
     </div>
     <!-- Breadcrumb End -->
     <div>
+        <div> 
+            <h3>Chỉnh sửa thông tin sinh viên</h3> 
+            <p>Mã số sinh viên chỉnh sửa: <%= sv.masv%></p>
+        </div>
         <table class="table" style="background-color: rgba(175, 193, 252,0.63);">
             <thead>
                 <tr>
@@ -35,13 +144,13 @@
                 <form class='form-group' action="/api/update?masv=<%=sv.masv%>" method="POST">
                     <tr>
                         <td>
-                            <input name="hovaten" class="form-control" placeholder="<%=sv.hovaten%>" />
+                            <input name="hovaten" class="form-control" placeholder="<%=sv.hovaten%>" required/>
                         </td>
                         <td>
-                            <input name='email' class="form-control" placeholder="<%=sv.email%>" />
+                            <input name='email' class="form-control" placeholder="<%=sv.email%>" required />
                         </td>
                         <td>
-                            <input name='sodienthoai' class="form-control" placeholder="<%=sv.sodienthoai%>" />
+                            <input name='sodienthoai' class="form-control" placeholder="<%=sv.sodienthoai%>" required />
                         </td>
                         <td>
                             <%= sv.password %>
